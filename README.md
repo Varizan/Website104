@@ -5,6 +5,7 @@
 Sebelum mulai, pastikan sudah punya:
 
 * Akun GitHub
+* GitHub Desktop
 * Git
 * VS Code
 * Akses/collaborator ke repository ini
@@ -18,16 +19,14 @@ https://git-scm.com/
 
 Kalau belum pernah mengambil repository ini ke laptop:
 
-1. Buka repository GitHub.
-2. Klik **Code**.
-3. Pilih **HTTPS**.
-4. Copy URL repository.
-5. Buka VS Code.
-6. Tekan `Ctrl + Shift + P`.
-7. Cari **Git: Clone**.
-8. Paste URL repository.
-9. Pilih folder untuk menyimpan project.
-10. Klik **Open** setelah proses selesai.
+1. Buka repository kalian di GitHub.
+2. Klik tombol <> Code yang warna hijau.
+3. Pilih tab Local kalau ada pilihan itu.
+4. Pilih GitHub Desktop.
+5. Browser biasanya akan meminta membuka GitHub Desktop.
+6. Klik Open GitHub Desktop.
+7. Di GitHub Desktop, pilih lokasi folder project.
+8. Klik Clone.
 
 Setelah itu project sudah ada di laptop kalian.
 
