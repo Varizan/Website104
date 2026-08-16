@@ -1,0 +1,883 @@
+/* =====================================================
+   FAMILY FARLENT 104
+   MAIN STYLE
+   Tema: Modern Yearbook / Editorial
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #171717;
+    color: #f1f1ef;
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   COLOR SYSTEM
+===================================================== */
+
+:root {
+
+    --black: #171717;
+    --black-soft: #1d1d1d;
+
+    --gray-dark: #242424;
+    --gray: #666666;
+    --gray-light: #a5a5a5;
+
+    --white: #f1f1ef;
+    --white-soft: #d8d8d5;
+
+    --red: #a83232;
+    --red-dark: #7d2525;
+
+    --border:
+        rgba(255, 255, 255, 0.10);
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        20px 7%;
+
+    background:
+        rgba(23, 23, 23, 0.94);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+/* Logo */
+
+.nav-logo {
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--white);
+}
+
+.nav-logo span {
+
+    color:
+        var(--red);
+}
+
+
+/* Menu */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    list-style: none;
+}
+
+
+.nav-menu a {
+
+    position: relative;
+
+    color:
+        var(--gray-light);
+
+    font-size: 13px;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.nav-menu a:hover,
+.nav-menu a.active {
+
+    color:
+        var(--white);
+}
+
+
+.nav-menu a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        var(--red);
+
+    transition:
+        width 0.25s ease;
+}
+
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+
+    width: 100%;
+}
+
+
+/* Mobile button */
+
+.menu-button {
+
+    display: none;
+
+    background: none;
+
+    border: none;
+
+    color:
+        var(--white);
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.section-heading {
+
+    max-width: 1100px;
+
+    margin:
+        0 auto 55px;
+}
+
+
+.section-heading.centered {
+
+    text-align: center;
+}
+
+
+.section-label {
+
+    color:
+        var(--red);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+}
+
+
+.section-heading h2 {
+
+    font-size:
+        clamp(32px, 5vw, 55px);
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+
+    line-height: 1.1;
+
+    margin-bottom: 18px;
+}
+
+
+.section-heading h2 span {
+
+    color:
+        var(--red);
+}
+
+
+.section-description {
+
+    max-width: 650px;
+
+    color:
+        var(--gray-light);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+.centered .section-description {
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding:
+        13px 22px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border-radius: 3px;
+
+    transition:
+        all 0.25s ease;
+}
+
+
+.btn-primary {
+
+    background:
+        var(--red);
+
+    color:
+        var(--white);
+}
+
+
+.btn-primary:hover {
+
+    background:
+        var(--red-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.btn-outline {
+
+    border:
+        1px solid
+        rgba(255,255,255,0.22);
+
+    color:
+        var(--white);
+}
+
+
+.btn-outline:hover {
+
+    border-color:
+        var(--red);
+
+    color:
+        var(--red);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =====================================================
+   TEXT LINK
+===================================================== */
+
+.text-link {
+
+    display: inline-block;
+
+    color:
+        var(--white);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.text-link:hover {
+
+    color:
+        var(--red);
+}
+
+
+/* =====================================================
+   HOME HERO
+===================================================== */
+
+.hero {
+
+    min-height:
+        100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    padding:
+        130px 7% 90px;
+
+    background:
+        #171717;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    overflow: hidden;
+}
+
+
+/*
+    Garis dekorasi sederhana.
+    Tidak memakai glow.
+*/
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 12%;
+
+    width: 1px;
+
+    height: 100%;
+
+    background:
+        rgba(255,255,255,0.06);
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 15%;
+
+    left: 0;
+
+    width: 35%;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+.hero-content {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.hero-label {
+
+    color:
+        var(--red);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 22px;
+}
+
+
+.hero h1 {
+
+    max-width: 900px;
+
+    font-size:
+        clamp(44px, 8vw, 92px);
+
+    line-height: 0.98;
+
+    letter-spacing: -4px;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    color:
+        var(--red);
+}
+
+
+.hero-description {
+
+    max-width: 650px;
+
+    color:
+        var(--gray-light);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 32px;
+
+    flex-wrap: wrap;
+}
+
+
+/*
+   Dekorasi lama tetap aman
+   tetapi dibuat sangat halus.
+*/
+
+.hero-decoration {
+
+    position: absolute;
+
+    pointer-events: none;
+}
+
+
+.hero-circle-one {
+
+    width: 420px;
+
+    height: 420px;
+
+    right: -150px;
+
+    bottom: -180px;
+
+    border:
+        1px solid
+        rgba(168,50,50,0.18);
+
+    border-radius: 50%;
+}
+
+
+.hero-circle-two {
+
+    display: none;
+}
+
+
+/* =====================================================
+   HOME PROFILE
+===================================================== */
+
+.home-profile {
+
+    padding:
+        110px 7%;
+
+    background:
+        #1d1d1d;
+}
+
+
+.profile-preview {
+
+    max-width: 1100px;
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.9fr 1.1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* Logo */
+
+.profile-logo-box {
+
+    min-height: 380px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    background:
+        #242424;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 2px;
+}
+
+
+.profile-logo-box img {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 70%;
+
+    max-height: 290px;
+
+    object-fit: contain;
+}
+
+
+.logo-glow {
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 180px;
+
+    background:
+        rgba(168,50,50,0.08);
+
+    border-radius: 50%;
+}
+
+
+/* Profile text */
+
+.profile-preview-text {
+
+    padding:
+        10px 0;
+}
+
+
+.red-line {
+
+    width: 45px;
+
+    height: 2px;
+
+    background:
+        var(--red);
+
+    margin-bottom: 20px;
+}
+
+
+.profile-preview-text h3 {
+
+    font-size:
+        clamp(25px, 3vw, 35px);
+
+    line-height: 1.2;
+
+    margin-bottom: 18px;
+}
+
+
+.profile-preview-text > p:not(.section-label) {
+
+    color:
+        var(--gray-light);
+
+    line-height: 1.9;
+
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    padding:
+        55px 20px;
+
+    text-align:
+        center;
+
+    background:
+        #111111;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+
+.footer h3 {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.footer h3 span {
+
+    color:
+        var(--red);
+}
+
+
+.footer p {
+
+    color:
+        var(--gray);
+
+    font-size: 12px;
+
+    margin-top: 8px;
+}
+
+
+.footer small {
+
+    display: block;
+
+    color:
+        #555555;
+
+    font-size: 11px;
+
+    margin-top: 16px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .menu-button {
+
+        display: block;
+    }
+
+
+    .nav-menu {
+
+        display: none;
+
+        position: absolute;
+
+        top: 67px;
+
+        left: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+        padding:
+            25px 7%;
+
+        background:
+            #171717;
+
+        border-bottom:
+            1px solid
+            var(--border);
+    }
+
+
+    .nav-menu.active {
+
+        display: flex;
+    }
+
+
+    .profile-preview {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+
+        padding:
+            17px 5%;
+    }
+
+
+    .nav-logo {
+
+        font-size: 16px;
+    }
+
+
+    .hero {
+
+        padding:
+            120px 5% 80px;
+    }
+
+
+    .hero h1 {
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .hero-description {
+
+        font-size: 14px;
+    }
+
+
+    .hero-buttons {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .home-profile {
+
+        padding:
+            80px 5%;
+    }
+
+
+    .profile-logo-box {
+
+        min-height:
+            280px;
+    }
+
+}

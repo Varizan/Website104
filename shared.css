@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
+:root{
+  --ink:#121012;
+  --panel:#1B1719;
+  --panel-2:#221D20;
+  --crimson:#7A1220;
+  --garnet:#B3241D;
+  --garnet-soft:#C94A3E;
+  --warmgray:#9C9591;
+  --hairline:#3A3335;
+  --paper:#F2EDE9;
+  --paper-dim:#C9C2BC;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Jost', sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+::selection{ background:var(--crimson); color:var(--paper); }
+h1,h2,h3,.serif{ font-family:'Cormorant Garamond', serif; }
+a{ color:inherit; text-decoration:none; }
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline:2px solid var(--garnet-soft);
+  outline-offset:3px;
+}
+.eyebrow{
+  font-family:'Jost', sans-serif;
+  font-size:12px;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  color:var(--garnet-soft);
+  font-weight:500;
+}
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- navbar ---------- */
+.navbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.1rem 4vw;
+  background:rgba(18,16,18,0.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-brand{ display:flex; align-items:center; gap:0.7rem; }
+.nav-brand svg{ width:32px; height:32px; }
+.nav-brand span{
+  font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.03em;
+}
+.nav-links{ display:flex; gap:2.1rem; list-style:none; }
+.nav-links a{
+  font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--warmgray);
+  font-weight:500; padding:0.4rem 0; border-bottom:1px solid transparent; transition:color 0.3s ease, border-color 0.3s ease;
+}
+.nav-links a:hover, .nav-links a[aria-current="page"]{ color:var(--paper); border-color:var(--garnet-soft); }
+.nav-toggle{ display:none; background:none; border:1px solid var(--hairline); border-radius:4px; color:var(--paper); width:38px; height:38px; cursor:pointer; }
+@media (max-width:860px){
+  .nav-links{
+    position:fixed; inset:64px 0 0 0; flex-direction:column; align-items:center; justify-content:center;
+    gap:2rem; background:var(--ink); transform:translateY(-110%); transition:transform 0.4s ease; z-index:49;
+  }
+  .nav-links.open{ transform:translateY(0); }
+  .nav-links a{ font-size:1rem; }
+  .nav-toggle{ display:block; }
+}
+
+/* ---------- crest ---------- */
+.crest .ring-outer{ fill:none; stroke:var(--garnet-soft); stroke-width:1; }
+.crest .ring-inner{ fill:none; stroke:var(--warmgray); stroke-width:0.6; opacity:0.55; }
+.crest text{ font-family:'Cormorant Garamond', serif; fill:var(--paper); text-anchor:middle; }
+.crest .num{ font-size:34px; font-weight:600; }
+.crest .label{ font-size:6.5px; letter-spacing:0.35em; fill:var(--warmgray); font-family:'Jost',sans-serif; }
+
+/* ---------- page header (for interior pages) ---------- */
+.page-header{
+  padding:5.5rem 6vw 3.5rem; text-align:center;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%, rgba(122,18,32,0.28), transparent 65%), var(--ink);
+  border-bottom:1px solid var(--hairline);
+}
+.page-header h1{ font-size:clamp(2.1rem, 5vw, 3.4rem); font-weight:600; margin-top:0.7rem; }
+.page-header p{ max-width:52ch; margin:1rem auto 0; color:var(--paper-dim); font-size:0.98rem; line-height:1.7; }
+
+section.block{ position:relative; padding:5rem 6vw; max-width:1080px; margin:0 auto; }
+.section-head{ text-align:center; margin-bottom:3.5rem; }
+.section-head .eyebrow{ display:block; margin-bottom:0.9rem; }
+.section-head h2{ font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:600; color:var(--paper); }
+.divider{ width:56px; height:1px; background:var(--garnet-soft); margin:1.4rem auto 0; }
+
+/* ---------- footer ---------- */
+footer{ padding:3.5rem 6vw 4rem; text-align:center; border-top:1px solid var(--hairline); }
+footer .crest-mini{ width:40px; height:40px; margin:0 auto 1rem; opacity:0.85; }
+footer p{ font-size:0.8rem; letter-spacing:0.08em; color:var(--warmgray); }
+
+/* ---------- reveal on scroll ---------- */
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------- reveal sideways (artikel / galeri) ---------- */
+.reveal-left{ opacity:0; transform:translateX(-52px); transition:opacity 0.85s ease, transform 0.85s cubic-bezier(.22,.75,.28,1); }
+.reveal-left.in{ opacity:1; transform:translateX(0); }
+.reveal-right{ opacity:0; transform:translateX(52px); transition:opacity 0.85s ease, transform 0.85s cubic-bezier(.22,.75,.28,1); }
+.reveal-right.in{ opacity:1; transform:translateX(0); }
+
+/* ---------- page header entrance ---------- */
+.page-header .eyebrow{ display:block; opacity:0; animation:rise 0.9s ease forwards 0.1s; }
+.page-header h1{ opacity:0; animation:rise 0.9s ease forwards 0.28s; }
+.page-header p{ opacity:0; animation:rise 0.9s ease forwards 0.46s; }
+@keyframes rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+/* ---------- general interactive micro-motion ---------- */
+.info-card, .quick-card, .medsos-card, .class-tab, .profile-card, .nav-brand svg{
+  transition:border-color 0.3s ease, transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.info-card:active, .quick-card:active, .profile-card:active{ transform:translateY(-1px) scale(0.99); }
+.nav-brand:hover svg{ transform:rotate(8deg); }
+.class-tab{ transition:all 0.25s ease, transform 0.2s ease; }
+.class-tab:active{ transform:scale(0.96); }
+
+/* ---------- card grid (news / gallery / class / yearbook) ---------- */
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:1.6rem; }
+.info-card{
+  background:var(--panel); border:1px solid var(--hairline); border-radius:2px; overflow:hidden;
+  display:flex; flex-direction:column; transition:border-color 0.3s ease, transform 0.3s ease;
+}
+.info-card:hover{ border-color:var(--garnet-soft); transform:translateY(-4px); }
+.info-card .thumb{
+  aspect-ratio:4/3; background:linear-gradient(150deg,var(--panel-2),var(--panel)); position:relative;
+  display:flex; align-items:center; justify-content:center; color:var(--hairline); overflow:hidden;
+}
+.info-card .thumb img{ width:100%; height:100%; object-fit:cover; }
+.info-card .thumb svg{ width:34px; height:34px; opacity:0.35; }
+.info-card .body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:0.5rem; flex:1; }
+.info-card .tag{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--garnet-soft); font-weight:500; }
+.info-card h3{ font-size:1.28rem; font-weight:600; line-height:1.3; }
+.info-card p{ font-size:0.9rem; color:var(--paper-dim); line-height:1.6; flex:1; }
+.info-card .meta{ font-size:0.76rem; color:var(--warmgray); letter-spacing:0.04em; margin-top:0.3rem; }
+
+/* ---------- search bar ---------- */
+.search-bar{
+  max-width:520px; margin:0 auto 3rem; display:flex; align-items:center; gap:0.8rem;
+  background:var(--panel); border:1px solid var(--hairline); border-radius:2px; padding:0.85rem 1.2rem;
+  transition:border-color 0.3s ease;
+}
+.search-bar:focus-within{ border-color:var(--garnet-soft); }
+.search-bar svg{ width:18px; height:18px; stroke:var(--warmgray); flex:none; }
+.search-bar input{
+  background:none; border:none; color:var(--paper); font-family:'Jost',sans-serif; font-size:0.95rem; width:100%; outline:none;
+}
+.search-bar input::placeholder{ color:var(--warmgray); }
+.empty-state{ text-align:center; padding:3rem 1rem; color:var(--warmgray); font-size:0.92rem; display:none; }
+.empty-state.show{ display:block; }
+
+/* ---------- class tabs ---------- */
+.class-tabs{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:0.6rem; margin-bottom:3.5rem;
+}
+.class-tab{
+  padding:0.6rem 1.1rem; border:1px solid var(--hairline); border-radius:2px; background:var(--panel);
+  color:var(--paper-dim); font-size:0.82rem; letter-spacing:0.06em; cursor:pointer; transition:all 0.25s ease;
+}
+.class-tab:hover{ border-color:var(--garnet-soft); color:var(--paper); }
+.class-tab[aria-selected="true"]{ background:var(--crimson); border-color:var(--crimson); color:var(--paper); }
+.class-panel{ display:none; }
+.class-panel.active{ display:block; }
+.class-photo-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:1rem; }
+.class-photo{
+  aspect-ratio:1; background:var(--panel); border:1px solid var(--hairline); display:flex; align-items:center;
+  justify-content:center; color:var(--hairline); border-radius:2px; overflow:hidden;
+}
+.class-photo svg{ width:26px; height:26px; opacity:0.4; }
+.class-photo img{ width:100%; height:100%; object-fit:cover; }
+.class-name-badge{ text-align:center; margin-bottom:2rem; }
+.class-name-badge h3{ font-size:2rem; }
+.class-name-badge p{ color:var(--warmgray); font-size:0.85rem; margin-top:0.3rem; }
+
+/* ---------- student profile cards ---------- */
+.profile-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:1.6rem; }
+.profile-card{
+  background:var(--panel); border:1px solid var(--hairline); border-radius:2px; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.profile-card:hover{ border-color:var(--garnet-soft); transform:translateY(-4px); }
+.profile-card .photo{
+  aspect-ratio:1; background:linear-gradient(150deg,var(--panel-2),var(--panel));
+  display:flex; align-items:center; justify-content:center; color:var(--hairline);
+}
+.profile-card .photo svg{ width:30px; height:30px; opacity:0.4; }
+.profile-details{ padding:1.2rem 1.3rem 1.4rem; display:flex; flex-direction:column; gap:0.55rem; }
+.profile-details div{ display:flex; gap:0.5rem; font-size:0.86rem; line-height:1.55; }
+.profile-details dt{ flex:none; width:6.6rem; color:var(--garnet-soft); font-weight:500; letter-spacing:0.02em; }
+.profile-details dd{ color:var(--paper-dim); }
+.profile-details .quote dd{ font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--paper); font-size:0.98rem; }
+
+/* ---------- yearbook ---------- */
+.year-group{ margin-bottom:4rem; }
+.year-group-head{ display:flex; align-items:baseline; gap:1rem; margin-bottom:1.6rem; }
+.year-group-head h3{ font-size:2.2rem; color:var(--garnet-soft); font-weight:600; }
+.year-group-head span{ font-size:0.8rem; color:var(--warmgray); letter-spacing:0.08em; }
+
+/* ---------- placeholder notice ---------- */
+.notice{
+  max-width:640px; margin:0 auto 3.5rem; text-align:center; padding:1rem 1.4rem;
+  border:1px dashed var(--hairline); border-radius:2px; color:var(--warmgray); font-size:0.85rem; line-height:1.7;
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+@media (max-width:640px){
+  section.block{ padding:4rem 6vw; }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil per Kelas — Farlent 104</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<div class="grain"></div>
+
+<nav class="navbar">
+  <a class="nav-brand" href="index.html">
+    <svg class="crest" viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-outer" cx="100" cy="100" r="92"/><text x="100" y="118" class="num" style="font-size:60px;">104</text></svg>
+    <span>Farlent 104</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="berita.html">Berita Angkatan</a></li>
+    <li><a href="galeri.html">Galeri</a></li>
+    <li><a href="kelas.html" aria-current="page">Profil per Kelas</a></li>
+    <li><a href="yearbook.html">Year Book</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</nav>
+
+<header class="page-header">
+  <span class="eyebrow">Sepuluh Kelas, Satu Keluarga</span>
+  <h1>Profil per Kelas</h1>
+  <p>Pilih kelas untuk melihat foto dan cerita masing-masing kelas 3 Unggulan A–H serta Upper A dan B.</p>
+</header>
+
+<main>
+  <section class="block reveal">
+    <div class="class-tabs" role="tablist" aria-label="Pilih kelas" id="classTabs"></div>
+    <div id="classPanels"></div>
+  </section>
+</main>
+
+<footer>
+  <svg class="crest-mini crest" viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-outer" cx="100" cy="100" r="92"/><text x="100" y="118" class="num" style="font-size:44px;">104</text></svg>
+  <p>FARLENT 104 &nbsp;·&nbsp; DIBUAT DENGAN KEBANGGAAN</p>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+  const classes = [
+    "3 Unggulan A","3 Unggulan B","3 Unggulan C","3 Unggulan D",
+    "3 Unggulan E","3 Unggulan F","3 Unggulan G","3 Unggulan H",
+    "3 Upper A","3 Upper B"
+  ];
+
+  const tabsEl = document.getElementById('classTabs');
+  const panelsEl = document.getElementById('classPanels');
+  const personIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>';
+
+  classes.forEach((name, i) => {
+    const id = 'class-' + i;
+    const tab = document.createElement('button');
+    tab.className = 'class-tab';
+    tab.textContent = name;
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    tab.setAttribute('aria-controls', id);
+    tab.addEventListener('click', () => activate(i));
+    tabsEl.appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = 'class-panel' + (i === 0 ? ' active' : '');
+    panel.id = id;
+    panel.setAttribute('role', 'tabpanel');
+
+    let cardsHtml = '';
+    for (let p = 0; p < 4; p++) {
+      const side = p % 2 === 0 ? 'reveal-left' : 'reveal-right';
+      cardsHtml += `
+        <div class="profile-card ${side}">
+          <div class="photo">${personIcon}</div>
+          <dl class="profile-details">
+            <div><dt>Nama</dt><dd>—</dd></div>
+            <div><dt>Asal</dt><dd>—</dd></div>
+            <div><dt>Hobi</dt><dd>—</dd></div>
+            <div><dt>Cita-cita</dt><dd>—</dd></div>
+            <div><dt>Instagram</dt><dd>—</dd></div>
+            <div class="quote"><dt>Kata hari ini</dt><dd>—</dd></div>
+          </dl>
+        </div>`;
+    }
+
+    panel.innerHTML = `
+      <div class="class-name-badge">
+        <h3 class="serif">${name}</h3>
+        <p>Profil anggota kelas belum diisi — kirimkan data setiap anggota untuk mengisi kartu di bawah ini.</p>
+      </div>
+      <div class="profile-grid">${cardsHtml}</div>
+    `;
+    panelsEl.appendChild(panel);
+  });
+
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); cardObserver.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.profile-card').forEach(el => cardObserver.observe(el));
+
+  function activate(index) {
+    tabsEl.querySelectorAll('.class-tab').forEach((t, i) => t.setAttribute('aria-selected', i === index ? 'true' : 'false'));
+    panelsEl.querySelectorAll('.class-panel').forEach((p, i) => p.classList.toggle('active', i === index));
+  }
+</script>
+</body>
+</html>
